@@ -1,0 +1,15 @@
+.title {
+  align-items: center;
+}
+
+.title__text {
+  text-align: center;
+  font-size: 80px;
+}
+
+@media (max-width: 850px) {
+  .title__text {
+    width: 300px;
+    font-size: 52px;
+  }
+}

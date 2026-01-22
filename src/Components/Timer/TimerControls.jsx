@@ -1,4 +1,5 @@
-import { status_map } from '../../utils/constants';
+import { status_map } from "../../Utils/constants";
+import React from "react";
 
 export default function TimerControls({
   status,
@@ -7,34 +8,30 @@ export default function TimerControls({
   on_reset,
 }) {
   return (
-    <div className="timer__controls">
-      {status === status_map.idle && (
-        <button className="timer__btn" onClick={on_start}>
-          start
+    <div className="controls">
+      <button className="controls__btn">🎵</button>
+
+      {status !== status_map.running && (
+        <button
+          className="controls__btn controls__btn--primary"
+          onClick={on_start}
+        >
+          ▶
         </button>
       )}
 
       {status === status_map.running && (
-        <button className="timer__btn" onClick={on_pause}>
-          pause
-        </button>
-      )}
-
-      {status === status_map.paused && (
-        <button className="timer__btn" onClick={on_start}>
-          resume
-        </button>
-      )}
-
-      {(status === status_map.running ||
-        status === status_map.paused) && (
         <button
-          className="timer__btn timer__btn--secondary"
-          onClick={on_reset}
+          className="controls__btn controls__btn--primary"
+          onClick={on_pause}
         >
-          reset
+          ❚❚
         </button>
       )}
+
+      <button className="controls__btn" onClick={on_reset}>
+        ✎
+      </button>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import { focus_presets } from '../../utils/constants';
+import { focus_presets } from '../../Utils/constants';
+import React from 'react';
 import './presets.css';
 
 export default function QuickActions({ selected_seconds, on_select }) {

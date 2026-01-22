@@ -33,3 +33,63 @@
 .timer__btn--secondary {
   background: #c9c3be;
 }
+
+.timer_circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e0e0;
+}
+
+.timer_line {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(#8BA0AF, #FFF);
+  transform: rotate(0deg);
+  animation: spin 2s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer_line.paused {
+  animation-play-state: paused;
+}
+
+.timer_display {
+  animation: counterSpin 2s linear infinite;
+}
+
+.timer_display.paused {
+  animation-play-state: paused;
+}
+
+/* Ring spin */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Counter-rotation for display */
+@keyframes counterSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+
+.timer_line::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  z-index: 2;
+}
+

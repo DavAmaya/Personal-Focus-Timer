@@ -5,6 +5,7 @@ import { useTimerEngine } from "../../Hooks/userTimerEngine";
 import QuickActions from "../../Components/Presets/QuickActions";
 import TimerDisplay from "../../Components/Timer/TimerDisplay";
 import TimerControls from "../../Components/Timer/TimerControls";
+import Timer from "../../Components/Timer/Timer";
 
 import "./app.css";
 import "../../Components/Timer/timer.css";
@@ -39,7 +40,7 @@ export default function App() {
 
         {!is_idle && (
           <div className={`timer timer--${timer.status}`}>
-            <TimerDisplay seconds={timer.remaining_seconds} />
+            <Timer timer={timer}/>
           </div>
         )}
 

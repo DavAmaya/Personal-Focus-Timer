@@ -1,4 +1,4 @@
-import { status_map } from '../../utils/constants';
+import { status_map } from '../../Utils/constants';
 
 export default function TimerControls({
   status,

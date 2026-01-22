@@ -2,17 +2,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 22px;
 }
 
 .timer--paused {
-  opacity: 0.5;
+  opacity: 0.55;
+}
+
+.timer__ring {
+  display: block;
+}
+
+.timer__ring-bg {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.08);
+  stroke-width: 12;
+}
+
+.timer__ring-progress {
+  fill: none;
+  stroke: #9da8b5;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.25s linear;
+}
+
+.timer__ring-progress--paused {
+  stroke: #bdbdbd;
 }
 
 .timer__display {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 64px;
-  letter-spacing: 2px;
+  font-family: "Changa", ui-monospace, monospace;
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-top: -6px;
 }
 
 .timer__controls {
@@ -32,4 +58,49 @@
 
 .timer__btn--secondary {
   background: #c9c3be;
+}
+.controls {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.controls__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  cursor: pointer;
+  font-size: 15px;
+}
+
+
+.controls__btn--primary {
+  background: #9da8b5;
+  color: white;
+}
+.timer__ring-celebration {
+  fill: none;
+  stroke: #9da8b5;
+  stroke-width: 6;
+  stroke-dasharray: 6 10;
+  animation: spin 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: 50% 50%;
+  }
 }

@@ -1,0 +1,36 @@
+.completed {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.completed__celebration {
+  font-size: 40px;
+}
+
+.completed__title {
+  font-size: 26px;
+  margin: 0;
+}
+
+.completed__summary {
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+.completed__time {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.completed__btn {
+  margin-top: 12px;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: #9da8b5;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}

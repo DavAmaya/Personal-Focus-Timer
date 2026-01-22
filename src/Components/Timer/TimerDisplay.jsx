@@ -1,4 +1,5 @@
-import { format_time } from '../../utils/time';
+import { format_time } from '../../Utils/time';
+import React from 'react';
 
 export default function TimerDisplay({ seconds }) {
   return (

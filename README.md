@@ -1,16 +1,83 @@
-# React + Vite
+# FocusFlow ⏱️  
+*A calm, state-driven focus timer for deep work*
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+**FocusFlow** is a minimalist focus timer designed to help users move from *“phone in hand”* to *“focus mode”* in under **3 seconds**.  
+The application prioritizes clarity, responsiveness, and calm visual feedback while tracking daily productivity with zero setup.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was built for a **code jam** with a strong emphasis on:
+- clean state management
+- UX-driven engineering decisions
+- predictable and extensible architecture
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Key Features
 
-## Expanding the ESLint configuration
+### Core Functionality
+- Preset focus sessions (15 / 25 / 45 minutes)
+- Start / pause / resume / reset timer
+- Visual countdown with animated progress ring
+- Focus completion screen with celebration state
+- Daily session counter and total focus time
+- Session history persisted in `localStorage`
+- Optional focus sound (user-triggered, browser-safe)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### UX Highlights
+- Time-first interface (clock is always the primary focus)
+- State-driven animations (UI never desyncs from logic)
+- Calm color palette with state-based visual feedback
+- Breathing halo animation during active focus
+- Accessible motion with `prefers-reduced-motion` support
+
+---
+
+## Application States
+
+FocusFlow is built around a simple and explicit state model:
+
+- `idle` — session selection / ready state  
+- `running` — active focus session  
+- `paused` — temporarily stopped  
+- `completed` — session finished with stats update  
+
+All UI rendering, animations, audio, and side effects are derived from these states.
+
+---
+
+## Tech Stack
+
+- **React** (functional components + hooks)
+- **Vite** (development & build tooling)
+- **CSS (BEM methodology)** for scalable styling
+- **LocalStorage** for persistence
+- **HTML5 Audio API** for optional focus sound
+
+No external UI libraries were used to keep the MVP lightweight and intentional.
+
+---
+
+## Project Structure
+
+```text
+src/
+├── Components/
+│   ├── App/
+│   ├── Timer/
+│   ├── Presets/
+│   ├── Completed/
+│   ├── Stats/
+│   └── Layout/
+├── Hooks/
+│   ├── useTimerEngine.js
+│   ├── useSessionHistory.js
+│   └── useFocusSound.js
+├── Utils/
+│   ├── constants.js
+│   └── stats.js
+└── main.jsx
+
+public/
+└── sounds/
+    └── rain.wav

@@ -9,6 +9,9 @@
     #efedea 45%,
     #e9e7e4 100%
   );
+  background-image: url(/src/assets/Nature\ Picture.jpeg);
+  background-size: cover;
+  background-position: center;
 }
 
 /* ===== Sidebar ===== */

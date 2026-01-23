@@ -41,17 +41,17 @@
 }
 
 .app__title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.45;
+  margin-bottom: 4px;
 }
 
 .app__subtitle {
-  margin: 6px 0 0;
-  font-size: 13px;
-  opacity: 0.75;
+  font-size: 12px;
+  opacity: 0.4;
 }
+
 
 .app__start {
   display: grid;
@@ -69,3 +69,10 @@
   font-weight: 600;
   min-width: 160px;
 }
+:root {
+  --accent-idle: #9da8b5;     /* calm blue-gray */
+  --accent-running: #7fa3b8;  /* cool focus */
+  --accent-paused: #c6a99a;   /* warm interruption */
+  --accent-complete: #8faea2; /* release / success */
+}
+

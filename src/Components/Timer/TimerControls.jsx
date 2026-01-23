@@ -6,12 +6,20 @@ export default function TimerControls({
   on_start,
   on_pause,
   on_reset,
+  on_toggle_sound,
+  sound_on,
 }) {
   return (
     <div className="controls">
-      <button className="controls__btn">🎵</button>
+      <button
+        className={`controls__btn ${sound_on ? "controls__btn--active" : ""}`}
+        onClick={on_toggle_sound}
+        title="toggle focus sound"
+      >
+        🎵
+      </button>
 
-      {status !== status_map.running && (
+      {status !== "running" && (
         <button
           className="controls__btn controls__btn--primary"
           onClick={on_start}
@@ -20,7 +28,7 @@ export default function TimerControls({
         </button>
       )}
 
-      {status === status_map.running && (
+      {status === "running" && (
         <button
           className="controls__btn controls__btn--primary"
           onClick={on_pause}

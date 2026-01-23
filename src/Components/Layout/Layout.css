@@ -1,0 +1,103 @@
+/* ===== App Frame ===== */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: radial-gradient(
+    1200px 600px at 50% 20%,
+    #f7f5f2 0%,
+    #efedea 45%,
+    #e9e7e4 100%
+  );
+  background-image: url(/src/assets/Nature\ Picture.jpeg);
+  background-size: cover;
+  background-position: center;
+}
+
+/* ===== Sidebar ===== */
+
+.sidebar {
+  width: 72px; /* ⬆ bigger */
+  padding: 20px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+
+  background: rgba(255, 255, 255, 0.45);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+.sidebar__btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  font-size: 30px;
+  opacity: 0.55;
+
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.sidebar__btn:hover {
+  opacity: 0.85;
+}
+
+.sidebar__btn--active {
+  background: rgba(0, 0, 0, 0.08);
+  opacity: 1;
+}
+
+/* ===== Main Area ===== */
+
+.layout__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header ===== */
+
+.header {
+  height: 65px; /* ⬆ */
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  backdrop-filter: blur(10px);
+}
+
+.header__title {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  opacity: 0.75;
+}
+
+.header__status {
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+/* ===== Content ===== */
+
+.layout__content {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}

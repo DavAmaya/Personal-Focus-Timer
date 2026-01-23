@@ -1,64 +1,138 @@
+/* ==============================
+   Timer – Focused, State-Driven
+   ============================== */
+
+:root {
+  --accent-idle: #9da8b5;
+  --accent-running: #7fa3b8;
+  --accent-paused: #c6a99a;
+  --accent-completed: #8faea2;
+  --ink: #1b1b1b;
+}
+
+/* ----- Layout ----- */
 .timer {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
 }
 
+/* Paused look */
 .timer--paused {
-  opacity: 0.55;
+  opacity: 0.6;
+  filter: saturate(0.85);
 }
 
+/* ----- Ring Wrapper ----- */
+.timer__ring-wrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+}
+
+/* Ambient breathing halo */
+.timer__ring-ambient {
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(111, 159, 184, 0.45),
+    rgba(111, 159, 184, 0.22) 45%,
+    transparent 72%
+  );
+
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Breathe only when running */
+.timer--running .timer__ring-ambient {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+/* ----- SVG Ring ----- */
 .timer__ring {
+  width: 240px;
+  height: 240px;
   display: block;
 }
 
 .timer__ring-bg {
   fill: none;
   stroke: rgba(0, 0, 0, 0.08);
-  stroke-width: 12;
+  stroke-width: 14;
 }
 
 .timer__ring-progress {
   fill: none;
-  stroke: #9da8b5;
-  stroke-width: 12;
+  stroke: var(--accent-idle);
+  stroke-width: 14;
   stroke-linecap: round;
+
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
-  transition: stroke-dashoffset 0.25s linear;
+
+  transition:
+    stroke-dashoffset 0.25s linear,
+    stroke 0.3s ease;
 }
 
-.timer__ring-progress--paused {
-  stroke: #bdbdbd;
+/* State colors */
+.timer--idle .timer__ring-progress {
+  stroke: rgba(0, 0, 0, 0.16);
 }
 
+.timer--running .timer__ring-progress {
+  stroke: #6f9fb8;
+  filter: drop-shadow(0 0 22px rgba(111, 159, 184, 0.45));
+}
+.timer--paused .timer__ring-progress {
+  stroke: var(--accent-paused);
+}
+.timer--running .app__card {
+  box-shadow:
+    0 50px 110px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* ----- Celebration Ring ----- */
+.timer__ring-celebration {
+  fill: none;
+  stroke: var(--accent-completed);
+  stroke-width: 7;
+  stroke-dasharray: 6 10;
+  opacity: 0.65;
+
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+
+  animation: celebration-spin 8s linear infinite;
+}
+
+/* Release moment */
+.timer--completed .timer__ring-wrapper {
+  animation: release 1.2s ease-out forwards;
+}
+
+/* ----- Timer Text ----- */
 .timer__display {
   font-family: "Changa", ui-monospace, monospace;
-  font-size: 72px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  margin-top: -6px;
+  font-size: 112px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-top: -16px;
+  color: var(--ink);
 }
 
-.timer__controls {
-  display: flex;
-  gap: 12px;
-}
-
-.timer__btn {
-  border: none;
-  border-radius: 999px;
-  padding: 10px 16px;
-  background: #9da8b5;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.timer__btn--secondary {
-  background: #c9c3be;
-}
+/* ----- Controls ----- */
 .controls {
   display: flex;
   gap: 16px;
@@ -66,41 +140,80 @@
 }
 
 .controls__btn {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   border: none;
 
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 6px 14px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 
   cursor: pointer;
   font-size: 15px;
+  opacity: 0.85;
+
+  transition:
+    transform 0.15s ease,
+    opacity 0.2s ease;
 }
 
+.controls__btn:hover {
+  transform: translateY(-1px);
+  opacity: 1;
+}
 
 .controls__btn--primary {
-  background: #9da8b5;
+  background: var(--accent-running);
   color: white;
 }
-.timer__ring-celebration {
-  fill: none;
-  stroke: #9da8b5;
-  stroke-width: 6;
-  stroke-dasharray: 6 10;
-  animation: spin 8s linear infinite;
-  opacity: 0.6;
+.controls__btn--active {
+  background: rgba(111, 159, 184, 0.25);
+  opacity: 1;
 }
 
-@keyframes spin {
+/* Completed buttons */
+.timer--completed .controls__btn--primary {
+  background: var(--accent-completed);
+}
+
+/* ----- Animations ----- */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(0.965);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+}
+
+@keyframes celebration-spin {
   from {
-    transform: rotate(0deg);
-    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
   }
   to {
-    transform: rotate(360deg);
-    transform-origin: 50% 50%;
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes release {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .timer__ring-ambient,
+  .timer__ring-celebration,
+  .timer--completed .timer__ring-wrapper {
+    animation: none !important;
   }
 }

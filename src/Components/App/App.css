@@ -4,12 +4,8 @@
   place-items: center;
   padding: 20px;
 
-  background: radial-gradient(
-    1200px 600px at 50% 20%,
-    #f7f5f2 0%,
-    #efedea 45%,
-    #e9e7e4 100%
-  );
+
+
 }
 
 .app__card {
@@ -41,16 +37,16 @@
 }
 
 .app__title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.45;
+  margin-bottom: 4px;
+  color: black;
 }
 
 .app__subtitle {
-  margin: 6px 0 0;
-  font-size: 13px;
-  opacity: 0.75;
+  font-size: 14px;
+  opacity: 0.4;
 }
 
 .app__start {
@@ -68,4 +64,10 @@
   color: white;
   font-weight: 600;
   min-width: 160px;
+}
+:root {
+  --accent-idle: #9da8b5; /* calm blue-gray */
+  --accent-running: #7fa3b8; /* cool focus */
+  --accent-paused: #c6a99a; /* warm interruption */
+  --accent-complete: #8faea2; /* release / success */
 }
